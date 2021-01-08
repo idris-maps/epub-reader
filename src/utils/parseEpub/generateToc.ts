@@ -3,7 +3,6 @@ import type { Page } from './getPages'
 export interface TocItem {
   id: string
   label: string
-  uri: string
   path: number[]
   playOrder: number
   prevId?: string
@@ -31,7 +30,6 @@ const flattenHierarchies = (hierarchy: Page[], path: number[]): PageWithPath[] =
 const hierarchyToTocItem = (d: PageWithPath): TocItem => ({
   id: d.id,
   label: d.label,
-  uri: encodeURIComponent(d.label),
   path: d.path,
   playOrder: d.playOrder,
 })
