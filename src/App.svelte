@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Drop from './components/Drop.svelte'
+  import Router from './components/Router.svelte'
 </script>
 
 <main>
-  <Drop />
+  <Router />
 </main>
