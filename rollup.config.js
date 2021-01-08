@@ -37,7 +37,8 @@ export default {
 		format: 'iife',
 		name: 'app',
 		file: 'public/build/bundle.js'
-	},
+  },
+  external: ['jszip'],
 	plugins: [
 		svelte({
 			preprocess: sveltePreprocess(),
