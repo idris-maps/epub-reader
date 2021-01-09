@@ -1,5 +1,5 @@
 import { derived, writable } from 'svelte/store'
-import { route } from './routing'
+import { route, goTo } from './routing'
 import getPageByPath from './getPageByPath'
 import type { Readable, Writable } from 'svelte/store'
 import type { Route } from './routing'
@@ -21,6 +21,7 @@ export const page = derived<[Writable<Epub>, Readable<Route>], PageWithNav | und
     } else {
       const tocItem = $book.toc.find(d => d.id === $route.page)
       if (!tocItem) {
+        goTo({ book: $book.fileName })
         return undefined
       }
       return {

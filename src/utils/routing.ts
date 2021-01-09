@@ -46,3 +46,5 @@ export const route = derived(
   query,
   $query => parseQuery($query),
 )
+
+query.subscribe(() => window.scrollTo(0, 0))
