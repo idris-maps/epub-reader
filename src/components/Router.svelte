@@ -1,24 +1,21 @@
-<script lang="ts">
-  import { query } from 'svelte-micro'
-  import { parseQuery } from '../utils/routing'
+<script>
+  import { route } from '../utils/routing'
   import Drop from './Drop.svelte'
   import Title from './Title.svelte'
   import Page from './Page.svelte'
 
-  $: q = parseQuery($query)
+  $: book = $route.book
+  $: page = $route.page
+  $: error = $route.error
 </script>
 
-<p>{JSON.stringify(q)}</p>
-
-{#if Boolean(q.book) && Boolean(q.page)}
+{#if book && page}
   <Title />
-  <Page id={q.page} />
-  <p>TODO - book: {q.book} - page: {q.page}</p>
-{:else if Boolean(q.book)}
+  <Page />
+{:else if book}
   <Title />
-  <p>TODO - book: {q.book}</p>
-{:else if Boolean(q.error)}
-  <p>TODO - error: {q.error}</p>
+{:else if error}
+  <p>error: {error}</p>
 {:else}
   <Drop />
 {/if}

@@ -1,7 +1,7 @@
-import { router } from 'svelte-micro'
-import { writable } from 'svelte/store'
+import { query, router } from 'svelte-micro'
+import { derived } from 'svelte/store'
 
-export interface Query {
+export interface Route {
   book?: string
   page?: string
   error?: string
@@ -23,7 +23,7 @@ const initGetValue = (parts: string[][]) =>
     return found ? found[1] : undefined
   }
 
-export const parseQuery = (query?: string): Query => {
+export const parseQuery = (query?: string): Route => {
   if (!query) { return {} }
   const getValue = initGetValue(split(removeFirst(query)))
   return {
@@ -33,11 +33,16 @@ export const parseQuery = (query?: string): Query => {
   }
 }
 
-export const goTo = (query: Query) => {
-  const keys = Object.keys(query)
+export const goTo = (route: Route) => {
+  const keys = Object.keys(route)
   if (keys.length === 0) {
     router.push('/')
   } else {
-    router.push(`/?${keys.map(key => `${key}=${query[key]}`).join('&')}`)
+    router.push(`/?${keys.map(key => `${key}=${route[key]}`).join('&')}`)
   }
 }
+
+export const route = derived(
+  query,
+  $query => parseQuery($query),
+)
