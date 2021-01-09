@@ -27,7 +27,7 @@ export default async (file: File): Promise<Epub> => {
 
   const author = content.doc.getElementsByTagName('dc:creator')[0]?.textContent || 'Unknown author'
   const title = content.doc.getElementsByTagName('dc:title')[0]?.textContent || 'Unknown title'
-  const pages = await getPages(getXml, getImg, ncx)
+  const pages = await getPages(getXml, getImg, ncx, file.name)
   const toc = await generateToc(pages)
 
   return {
