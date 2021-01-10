@@ -1,18 +1,31 @@
 <script lang="ts">
+  import PrevIcon from '@svelte-parts/icons/feather/arrow-left'
+  import NextIcon from '@svelte-parts/icons/feather/arrow-right'
   import { page, book } from '../utils/book'
-  import { goTo } from '../utils/routing'
 </script>
 
 {#if $page}
-  {@html $page.file}
-  {#if $page.prevId}
-    <button
-      on:click={() => goTo({ book: $book.fileName, page: $page.prevId })}
-    >Prev</button>
-  {/if}
-  {#if $page.nextId}
-    <button
-      on:click={() => goTo({ book: $book.fileName, page: $page.nextId })}
-    >Next</button>
-  {/if}
+  <div class="page">
+    {@html $page.file}
+  </div>
+  <div class="navigation">
+    {#if $page.prevId}
+      <a
+        href={`/?book=${$book.fileName}&page=${$page.prevId}`}
+        title="Previous page"
+        class="navigation-prev"
+      >
+        <PrevIcon />
+      </a>
+    {/if}
+    {#if $page.nextId}
+      <a
+        href={`/?book=${$book.fileName}&page=${$page.nextId}`}
+        title="Next page"
+        class="navigation-next"
+      >
+        <NextIcon />
+      </a>
+    {/if}
+  </div>
 {/if}
