@@ -124,3 +124,9 @@ blockquote {
   border-left: solid var(--color-border) 2px;
   padding-left: 1em;
 }
+
+td {
+  padding-left: 1em;
+  padding-right: 1em;
+  vertical-align: text-top;
+}

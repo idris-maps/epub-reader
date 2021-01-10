@@ -68,7 +68,9 @@ const getPage = async (
   const navPoints = Array.from(el.children).filter(d => d.tagName === 'navPoint')
   const playOrder = Number(el.getAttribute('playOrder'))
   const fileName = el.getElementsByTagName('content')[0]?.getAttribute('src')
-  const [id] = fileName.split('.xhtml')
+  const { hash } = getPath(fileName)
+  const [pathToFile] = fileName.split('.xhtml')
+  const id = `${pathToFile}${hash}`
 
   if (!label || !fileName || !fileName.includes('.xhtml') || !playOrder) {
     throw new Error(`Invalid TOC ${JSON.stringify({ label, fileName, playOrder })}`)

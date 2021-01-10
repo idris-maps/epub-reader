@@ -47,4 +47,14 @@ export const route = derived(
   $query => parseQuery($query),
 )
 
-query.subscribe(() => window.scrollTo(0, 0))
+query.subscribe(() => {
+  window.scrollTo(0, 0)
+  if (window.location.hash) {
+    const location = window.location
+    console.log({ location })
+    // hack to ensure hash is taken into account
+    setTimeout(() => {
+      window.location = location
+    }, 200)
+  }
+})

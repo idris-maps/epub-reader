@@ -34,11 +34,32 @@ const hierarchyToTocItem = (d: PageWithPath): TocItem => ({
   playOrder: d.playOrder,
 })
 
+const findNextPageId = (current: TocItem, items: TocItem[], r = false) => {
+  const toc = r
+    ? items.sort((a, b) => a.playOrder < b.playOrder ? 1 : -1)
+    : items.sort((a, b) => a.playOrder > b.playOrder ? 1 : -1)
+  const after = toc.reduce(
+    ([isAfter, next], d) => {
+      if (d.id === current.id) { return [true, null] }
+      if (isAfter && !Boolean(next)) {
+        const [noHashId] = d.id.split('#')
+        const [noHashCurrent] = current.id.split('#')
+        if (noHashId !== noHashCurrent) {
+          return [true, noHashId]
+        }
+      }
+      return [isAfter, next] 
+    },
+    [false, null],
+  )
+  return after[1] ? String(after[1]) : undefined;
+}
+
 const addPrevNext = (toc: TocItem[]) =>
-  (d: TocItem, index: number): TocItem => ({
+  (d: TocItem): TocItem => ({
     ...d,
-    prevId: toc[index - 1]?.id,
-    nextId: toc[index + 1]?.id,
+    nextId: findNextPageId(d, toc),
+    prevId: findNextPageId(d, toc, true),
   })
 
 export default (pages: Page[]) => {
