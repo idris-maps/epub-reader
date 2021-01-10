@@ -8,9 +8,9 @@ const getExtension = (file: string) => {
 const findFile = (folder: JSZip, file: string) => {
   const f0 = folder.file(file)
   if (f0) { return f0 }
-  
+
   const [first, ...path] = file.split('/')
-  const shortPath = path.join('/')
+  const shortPath = path.length > 0 ? path.join('/') : first
   const found = Object.keys(folder.files).find((d) => d.endsWith(shortPath))
   if (found) {
     return folder.file(found)
