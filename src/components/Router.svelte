@@ -7,14 +7,16 @@
   import Header from './Header.svelte'
   import Error from './Error.svelte'
   import GoToTop from './GoToTop.svelte'
+  import BookList from './BookList.svelte'
+  import Info from './Info.svelte'
 </script>
 
-{#if $book && $page}
+{#if $route.book && $book && $page}
   <Book page={$page}/>
   <main>
     <Page />
   </main>
-{:else if $book}
+{:else if $route.book && $book}
   <Book />
 {:else if $route.error}
   <Header />
@@ -25,6 +27,8 @@
   <Header />
   <main>
     <Drop />
+    <BookList />
+    <Info />
   </main>
 {/if}
 <GoToTop />

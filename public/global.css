@@ -77,6 +77,17 @@ body {
   background-color: var(--color-secondary-bg);
 }
 
+.back {
+  background-color: var(--color-secondary-bg);
+  border-bottom: solid var(--color-border) 1px;
+  padding: 0.5em;
+}
+
+.back span {
+  margin-left: 2em;
+  margin-right: 0.5em;
+}
+
 .logo-header {
   display: grid;
   grid-template-columns: 4em auto;
@@ -179,4 +190,47 @@ td {
   font-size: 3em;
   background-color: rgba(0, 0, 0, 0);
   color: var(--color-text)
+}
+
+.book-list {
+  margin-top: 3em;
+}
+
+.book-list-item {
+  display: grid;
+  grid-template-columns: auto 2em;
+  border-bottom: dotted var(--color-border) 1px;
+  padding: 0.5em;
+}
+
+.book-list-item button {
+  border: none;
+  padding: 0;
+  background-color: var(--color-bg);
+  cursor: pointer;
+}
+
+.book-list-item button:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+}
+
+.book-list-item .book-label {
+  cursor: pointer;
+}
+
+.book-list-item .book-label:hover {
+  font-weight: bold;
+}
+
+.book-list-item .book-author {
+  font-style: italic;
+}
+
+.info {
+  margin-top: 3em;
+}
+
+.info a {
+  text-decoration: underline;
 }

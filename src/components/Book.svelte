@@ -2,6 +2,7 @@
   import { slide } from 'svelte/transition'
   import ChaptersIcon from '@svelte-parts/icons/feather/list'
   import CloseChaptersIcon from '@svelte-parts/icons/feather/x'
+  import BookIcon from '@svelte-parts/icons/feather/book-open'
   import Toc from './Toc.svelte'
   import { book } from '../utils/book'
   import type { Page } from '../utils/parseEpub/getPages'
@@ -10,10 +11,9 @@
 
   $: title = $book?.title
   $: author = $book?.author
-  $: pages = $book.pages
+  $: pages = $book?.pages
 
   let expanded = false
-
 </script>
 
 <header class="book-header">
@@ -41,5 +41,13 @@
     {#each (pages || []) as p}
       <Toc p={p} closeChapters={() => expanded = false}/>
     {/each}
+  </div>
+  <div class="back">
+    <a href="/">
+      <span>
+        <BookIcon />
+      </span>
+      Open another book
+    </a>
   </div>
 {/if}
