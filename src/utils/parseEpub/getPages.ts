@@ -29,8 +29,11 @@ interface PathInfo {
 const getPath = (link: string): PathInfo => {
   const [pathWithHash, maybeHash] = link.split('#')
   const [fileName, ...reversedPath] = pathWithHash.split('/').reverse()
-  const [fileId, extension] = fileName.split('.')
+  const fileIdParts = fileName.split('.')
+  const extension = fileIdParts.pop()
+  const fileId = fileIdParts.join('.')
   const path = reversedPath.reverse().join('/')
+
   return {
     hash: maybeHash ? `#${maybeHash}` : '',
     fileName,
@@ -68,15 +71,15 @@ const getPage = async (
   const navPoints = Array.from(el.children).filter(d => d.tagName === 'navPoint')
   const playOrder = Number(el.getAttribute('playOrder'))
   const fileName = el.getElementsByTagName('content')[0]?.getAttribute('src')
-  const { hash } = getPath(fileName)
-  const [pathToFile] = fileName.split('.xhtml')
+  const { hash, extension } = getPath(fileName)
+  const [pathToFile] = fileName.split(`.${extension}`)
   const id = `${pathToFile}${hash}`
 
-  if (!label || !fileName || !fileName.includes('.xhtml') || !playOrder) {
+  if (!label || !fileName || !playOrder) {
     throw new Error(`Invalid TOC ${JSON.stringify({ label, fileName, playOrder })}`)
   }
 
-  const filePath = [...path, `${fileName.split('.xhtml')[0]}.xhtml`].join('/')
+  const filePath = [...path, `${pathToFile}.${extension}`].join('/')
   const fileContent = await getXml(filePath)
   await fixImages(fileContent, getImg)
   fixLinks(fileContent, bookId, fileName)
