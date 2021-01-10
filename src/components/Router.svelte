@@ -6,6 +6,7 @@
   import Page from './Page.svelte'
   import Header from './Header.svelte'
   import Error from './Error.svelte'
+  import GoToTop from './GoToTop.svelte'
 </script>
 
 {#if $book && $page}
@@ -26,3 +27,4 @@
     <Drop />
   </main>
 {/if}
+<GoToTop />
