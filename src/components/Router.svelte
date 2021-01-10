@@ -4,7 +4,8 @@
   import Drop from './Drop.svelte'
   import Book from './Book.svelte'
   import Page from './Page.svelte'
-
+  import Header from './Header.svelte'
+  import Error from './Error.svelte'
 </script>
 
 {#if $book && $page}
@@ -15,8 +16,12 @@
 {:else if $book}
   <Book />
 {:else if $route.error}
-  <p>error: {$route.error}</p>
+  <Header />
+  <main>
+    <Error id={$route.error} />
+  </main>
 {:else}
+  <Header />
   <main>
     <Drop />
   </main>
