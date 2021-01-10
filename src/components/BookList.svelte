@@ -25,11 +25,9 @@
     <div class="book-list">
       <h2>Previously read</h2>
       {#each books as book}
-        <div
-          class="book-list-item"
-          tabIndex={0}
-        >
+        <div class="book-list-item">
           <div
+            tabIndex={0}
             class="book-label"
             on:click={onClick(book.fileName)}
             on:keydown={onKeyDown(book.fileName)}
