@@ -109,6 +109,11 @@ a {
   text-decoration: underline;
 }
 
+a[role="doc-noteref"] {
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
+
 p {
   text-align: justify;
 }

@@ -50,9 +50,8 @@ export const route = derived(
 query.subscribe(() => {
   window.scrollTo(0, 0)
   if (window.location.hash) {
-    const location = window.location
-    console.log({ location })
     // hack to ensure hash is taken into account
+    const location = window.location
     setTimeout(() => {
       window.location = location
     }, 200)
