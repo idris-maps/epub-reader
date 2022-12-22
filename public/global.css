@@ -8,6 +8,15 @@
   --width-content: 1080px;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: rgb(30, 30, 30);
+    --color-secondary-bg: rgb(40, 40, 40);
+    --color-text:rgb(245, 245, 245);
+    --color-border: rgb(50, 50, 50);
+  }
+}
+
 html,
 body {
   border: 0;
@@ -206,6 +215,7 @@ td {
 .book-list-item button {
   border: none;
   padding: 0;
+  color: var(--color-text);
   background-color: var(--color-bg);
   cursor: pointer;
 }
