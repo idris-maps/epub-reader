@@ -17,6 +17,8 @@
       >
         <PrevIcon />
       </a>
+    {:else}
+      <div/>
     {/if}
     {#if $page.nextId}
       <a
