@@ -34,9 +34,11 @@ const hierarchyToTocItem = (d: PageWithPath): TocItem => ({
   playOrder: d.playOrder,
 })
 
+const normalizedId = (d: TocItem) => d.id.split('#')[0]
+
 const getPrev = (toc: TocItem[], item: TocItem) => {
   const allPrev = toc
-    .filter(d => d.playOrder < item.playOrder)
+    .filter(d => d.playOrder < item.playOrder && normalizedId(d) !== normalizedId(item))
     .sort((a, b) => a.playOrder > b.playOrder ? -1 : 1)
 
   return allPrev[0] ? allPrev[0].id : undefined
@@ -44,7 +46,7 @@ const getPrev = (toc: TocItem[], item: TocItem) => {
 
 const getNext = (toc: TocItem[], item: TocItem) => {
   const allNext = toc
-    .filter(d => d.playOrder > item.playOrder)
+    .filter(d => d.playOrder > item.playOrder && normalizedId(d) !== normalizedId(item))
     .sort((a, b) => a.playOrder > b.playOrder ? 1 : -1)
 
   return allNext[0] ? allNext[0].id : undefined
