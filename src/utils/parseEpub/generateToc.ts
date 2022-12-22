@@ -41,7 +41,7 @@ const getPrev = (toc: TocItem[], item: TocItem) => {
     .filter(d => d.playOrder < item.playOrder && normalizedId(d) !== normalizedId(item))
     .sort((a, b) => a.playOrder > b.playOrder ? -1 : 1)
 
-  return allPrev[0] ? allPrev[0].id : undefined
+  return allPrev[0] ? normalizedId(allPrev[0]) : undefined
 }
 
 const getNext = (toc: TocItem[], item: TocItem) => {
@@ -49,7 +49,7 @@ const getNext = (toc: TocItem[], item: TocItem) => {
     .filter(d => d.playOrder > item.playOrder && normalizedId(d) !== normalizedId(item))
     .sort((a, b) => a.playOrder > b.playOrder ? 1 : -1)
 
-  return allNext[0] ? allNext[0].id : undefined
+  return allNext[0] ? normalizedId(allNext[0]) : undefined
 }
 
 const addPrevNext = (toc: TocItem[]) =>
