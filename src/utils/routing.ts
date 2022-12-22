@@ -7,29 +7,13 @@ export interface Route {
   error?: string
 }
 
-const removeFirst = (d: string) => {
-  if (d.startsWith('?')) { return d.substring(1) }
-  if (d.startsWith('/?')) { return d.substring(2) }
-  return d
-}
-
-const split = (q: string) =>
-  q.split('&')
-    .map(d => d.split('='))
-
-const initGetValue = (parts: string[][]) =>
-  (key: string): string | undefined => {
-    const found = parts.find(d => d[0] === key)
-    return found ? found[1] : undefined
-  }
-
 export const parseQuery = (query?: string): Route => {
   if (!query) { return {} }
-  const getValue = initGetValue(split(removeFirst(query)))
+  const search = new URLSearchParams(query)
   return {
-    book: getValue('book'),
-    page: getValue('page'),
-    error: getValue('error'),
+    book: search.get('book'),
+    page: search.get('page'),
+    error: search.get('error'),
   }
 }
 
