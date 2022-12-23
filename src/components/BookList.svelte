@@ -14,7 +14,7 @@
   const deleteBook = (fileName: string) =>
     () => {
       db.deleteBook(fileName)
-        .then(() => window.location.reload(false))
+        .then(() => window.location.reload())
     }
 </script>
 
