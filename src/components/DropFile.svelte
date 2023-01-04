@@ -63,6 +63,7 @@
   #zone {
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
   #hidden-input {
     display: none;
