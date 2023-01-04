@@ -10,6 +10,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@tsconfig/svelte": "^1.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -18,13 +20,10 @@
     "svelte": "^3.0.0",
     "svelte-check": "^1.0.0",
     "svelte-preprocess": "^4.0.0",
-    "@rollup/plugin-typescript": "^6.0.0",
-    "typescript": "^3.9.3",
     "tslib": "^2.0.0",
-    "@tsconfig/svelte": "^1.0.0"
+    "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@svelte-parts/drop-file": "0.0.18",
     "@svelte-parts/icons": "0.0.18",
     "jszip": "^3.5.0",
     "localforage": "^1.9.0",

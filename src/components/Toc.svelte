@@ -19,7 +19,7 @@
     <div class="title">
       <span
         class="title-expand"
-        tabindex="0"
+        tabindex={0}
         on:keydown={e => { if (e.key === 'Enter') { expanded = !expanded } }}
         on:click={() => expanded = !expanded}
       >

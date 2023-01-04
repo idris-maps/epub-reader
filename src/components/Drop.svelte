@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Drop from '@svelte-parts/drop-file'
+  import Drop from './DropFile.svelte'
   import Loader from './Loader.svelte'
   import parseEpub from '../utils/parseEpub'
   import { goTo } from '../utils/routing'
